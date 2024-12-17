@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+void reflect_matrix(int matrix[][100], int M, int N) {
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N / 2; j++) {
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[i][N - j - 1];
+            matrix[i][N - j - 1] = temp;
+        }
+    }
+}
+
+void print_matrix(int matrix[][100], int M, int N) {
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int M, N;
+    
+    printf("Введите количество строк (M): \n");
+    scanf("%d", &M);
+    printf("Введите количество столбцов (N): \n");
+    scanf("%d", &N);
+
+    int matrix[100][100];
+
+    printf("Введите элементы матрицы:\n");
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    
+    reflect_matrix(matrix, M, N);
+
+    printf("Зеркально отраженная матрица:\n");
+    print_matrix(matrix, M, N);
+
+    return 0;
+}
